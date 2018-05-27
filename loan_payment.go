@@ -35,8 +35,6 @@ func GenerateLoanPayment(durationYear int, interestPercent float64, totalLoan fl
 	// periods = duration * 12 month
 	periods := durationYear * 12
 	// decimal version of the interest rat
-	//interestRate := ((interestPercent / 100) * 30 * totalLoan) / 360
-	//payment := (totalLoan + ((interestPercent / 100) * totalLoan)) / float64(periods)
 	ratePeriod := (interestPercent / 100) * 30 / 360
 	annuity := (ratePeriod * totalLoan) / (1 - math.Pow(1+ratePeriod, float64(periods*-1)))
 
@@ -47,19 +45,19 @@ func GenerateLoanPayment(durationYear int, interestPercent float64, totalLoan fl
 		interest := ((interestPercent / 100) * 30 * outstanding) / 360
 		principal := annuity - interest
 
-		if i > 0 {
-			outstanding = outstanding - principal
-		}
-
 		remaining := outstanding - principal
 
-		if principal > remaining {
-			principal = remaining
+		payment := 0.0
+		if remaining > outstanding {
+			payment = outstanding
+			remaining = outstanding - payment
+		} else {
+			payment = principal + interest
 		}
 
-		payment := principal + interest
-
 		loanPlans = append(loanPlans, PaymentPlan{date, payment, principal, interest, outstanding, remaining})
+
+		outstanding = outstanding - principal
 	}
 
 	return loanPlans, nil

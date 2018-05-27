@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 	"time"
 )
@@ -12,4 +13,13 @@ func TestGenerateLoanPayment(t *testing.T) {
 		t.Error("payment plan should be 24 times")
 	}
 
+	if pPlan[0].principal != 198.52361533700798 {
+		t.Error("first principle should be 198.52361533700798")
+	}
+
+	zeroVar := fmt.Sprintf("%.0f", pPlan[23].remainingPrincipal)
+	if zeroVar != "0" {
+		t.Error(zeroVar)
+		t.Error("last remaining must be 0")
+	}
 }
