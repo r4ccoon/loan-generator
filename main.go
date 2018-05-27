@@ -3,10 +3,12 @@ package main
 import (
 	"fmt"
 	"time"
+
+	"github.com/r4ccoon/loan-generator/loanpayment"
 )
 
 func main() {
-	payments, _ := GenerateLoanPayment(2, 5, 5000, time.Date(2018, 1, 1, 0, 0, 0, 0, time.UTC))
+	payments, _ := loanpayment.GenerateLoanPayment(2, 5, 5000, time.Date(2018, 1, 1, 0, 0, 0, 0, time.UTC))
 
 	fmt.Println("No. | Annuity | Principal | Interest | Initial | Remaining")
 
