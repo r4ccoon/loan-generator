@@ -8,12 +8,12 @@ import (
 
 // PaymentPlan repayment plan struct for borrowers
 type PaymentPlan struct {
-	date                       time.Time
-	annuity                    float64
-	principal                  float64
-	interest                   float64
-	initialOustandingPrincipal float64
-	remainingPrincipal         float64
+	Date                       time.Time
+	Annuity                    float64
+	Principal                  float64
+	Interest                   float64
+	InitialOustandingPrincipal float64
+	RemainingPrincipal         float64
 }
 
 // GenerateLoanPayment generate loan payment
