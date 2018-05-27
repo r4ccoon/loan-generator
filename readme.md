@@ -14,3 +14,16 @@ This program will open port 8000
 cd web
 go run main.go
 ```
+
+### example payload
+``` 
+{
+    "loanAmount": 5000, 
+    "nominalRate": 5.0,
+    "duration": 12,
+    "startDate": "2018-01-01T00:00:01Z"
+}
+
+e.g.:
+POST http://localhost:8000/generate-plan
+```
